@@ -140,7 +140,7 @@ ${alternates}
 function rootHead() {
   return `    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Garsėja — Article audio player (Demo)</title>
+    <title>Garsėja — Article audio player</title>
     <meta
       name="description"
       content="Multilingual demo of the Garsėja article audio player for publishers. Choose your language to preview the player."
