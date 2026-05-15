@@ -17,7 +17,7 @@ The **“Test on your website”** buttons open a modal that POSTs to [Web3Forms
 1. Create an access key in the Web3Forms dashboard.
 2. Put it in a local env file (not committed):
 
-Create `.env.local` (gitignored) with:
+Create `.env` in the project root (gitignored — do not commit) with:
 
 ```bash
 VITE_WEB3FORMS_ACCESS_KEY=your_access_key_here
