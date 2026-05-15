@@ -310,9 +310,6 @@ function App() {
           </a>
 
           <div className="flex items-center gap-2">
-            <button type="button" onClick={openTrialRequest} className="btn-primary hidden sm:inline-flex">
-              {bundle.landing.heroCta}
-            </button>
             <LanguageDropdown locale={locale} menuAlign="right" menuAriaLabel={ui.ariaLanguageMenu} />
           </div>
         </div>
@@ -332,7 +329,7 @@ function App() {
               </p>
 
               <div className="mt-8">
-                <button type="button" onClick={openTrialRequest} className="btn-primary">
+                <button type="button" onClick={openTrialRequest} className="btn-primary btn-primary--hero">
                   {bundle.landing.heroCta}
                 </button>
               </div>

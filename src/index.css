@@ -287,6 +287,16 @@ body {
   transform: translateY(0);
 }
 
+.btn-primary--hero {
+  padding: 0.9rem 1.85rem;
+  font-size: 1.0625rem;
+  box-shadow: 0 6px 20px rgba(217, 150, 91, 0.38);
+}
+
+.btn-primary--hero:hover {
+  box-shadow: 0 10px 28px rgba(217, 150, 91, 0.45);
+}
+
 .btn-ghost {
   display: inline-flex;
   align-items: center;
