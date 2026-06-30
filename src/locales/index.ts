@@ -155,8 +155,10 @@ export const LOCALES: Record<Locale, LocaleBundle> = {
       seconds: 's',
     },
     voices: [
-      { id: 'lt-1', name: 'Aira', audioPathFromRoot: 'audio/lt/voice-1.mp3' },
-      { id: 'lt-2', name: 'Benas', audioPathFromRoot: 'audio/lt/voice-2.mp3' },
+      { id: 'lt-1', name: 'Laura', audioPathFromRoot: 'audio/lt/voice-1.mp3' },
+      { id: 'lt-2', name: 'Andrius', audioPathFromRoot: 'audio/lt/voice-2.mp3' },
+      { id: 'lt-3', name: 'Aira', audioPathFromRoot: 'audio/lt/voice-3.mp3' },
+      { id: 'lt-4', name: 'Benas', audioPathFromRoot: 'audio/lt/voice-4.mp3' },
     ],
     defaultVoiceId: 'lt-1',
   },
