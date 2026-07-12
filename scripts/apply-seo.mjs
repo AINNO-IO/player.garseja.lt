@@ -2,7 +2,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 
 const root = path.resolve(import.meta.dirname, '..')
-const SITE = 'https://player.garseja.lt'
+const SITE = 'https://player.garsio.io'
 const LOCALES = ['en', 'lt', 'cs', 'sk', 'hu', 'ro', 'bg', 'hr', 'sr', 'sl', 'de', 'es', 'da', 'sv', 'no', 'fi']
 const OG_IMAGE = `${SITE}/logo-og.png`
 
@@ -53,6 +53,18 @@ function parseLocalesFromSource() {
   return map
 }
 
+const FAVICON_LINKS_LOCALE = `    <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="../favicon.ico" sizes="48x48" type="image/x-icon" />
+    <link rel="icon" href="../favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="icon" href="../favicon-16.png" sizes="16x16" type="image/png" />
+    <link rel="apple-touch-icon" href="../favicon-48.png" />`
+
+const FAVICON_LINKS_ROOT = `    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="./favicon.ico" sizes="48x48" type="image/x-icon" />
+    <link rel="icon" href="./favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="icon" href="./favicon-16.png" sizes="16x16" type="image/png" />
+    <link rel="apple-touch-icon" href="./favicon-48.png" />`
+
 function hreflangLinks() {
   return LOCALES.map(
     (locale) => `    <link rel="alternate" hreflang="${locale}" href="${SITE}/${locale}/" />`,
@@ -68,15 +80,15 @@ function jsonLd({ locale, title, description, url }) {
           '@type': 'WebSite',
           '@id': `${SITE}/#website`,
           url: `${SITE}/`,
-          name: 'Garsėja',
+          name: 'Garsio',
           publisher: { '@id': `${SITE}/#organization` },
           inLanguage: LOCALES,
         },
         {
           '@type': 'Organization',
           '@id': `${SITE}/#organization`,
-          name: 'Garsėja',
-          url: 'https://garseja.lt/',
+          name: 'Garsio',
+          url: 'https://garsio.io/',
           logo: { '@type': 'ImageObject', url: `${SITE}/logo.png` },
         },
         {
@@ -92,7 +104,7 @@ function jsonLd({ locale, title, description, url }) {
         {
           '@type': 'SoftwareApplication',
           '@id': `${SITE}/#software`,
-          name: 'Garsėja Article Audio Player',
+          name: 'Garsio Article Audio Player',
           applicationCategory: 'MultimediaApplication',
           operatingSystem: 'Web',
           offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' },
@@ -119,17 +131,17 @@ function localeHead(locale, title, description) {
     <link rel="canonical" href="${url}" />
 ${hreflangLinks()}
     <link rel="alternate" hreflang="x-default" href="${SITE}/en/" />
-    <link rel="icon" href="../favicon.ico" type="image/x-icon" sizes="32x32" />
+${FAVICON_LINKS_LOCALE}
     <meta name="theme-color" content="#fffbf7" />
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Garsėja" />
+    <meta property="og:site_name" content="Garsio" />
     <meta property="og:locale" content="${ogLocale}" />
 ${alternates}
     <meta property="og:url" content="${url}" />
     <meta property="og:title" content="${escapeAttr(title)}" />
     <meta property="og:description" content="${escapeAttr(description)}" />
     <meta property="og:image" content="${OG_IMAGE}" />
-    <meta property="og:image:alt" content="Garsėja logo" />
+    <meta property="og:image:alt" content="Garsio logo" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="${escapeAttr(title)}" />
     <meta name="twitter:description" content="${escapeAttr(description)}" />
@@ -140,16 +152,16 @@ ${alternates}
 function rootHead() {
   return `    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Garsėja — Article audio player</title>
+    <title>Garsio — Article audio player</title>
     <meta
       name="description"
-      content="Multilingual demo of the Garsėja article audio player for publishers. Choose your language to preview the player."
+      content="Multilingual demo of the Garsio article audio player for publishers. Choose your language to preview the player."
     />
     <meta name="robots" content="noindex, follow" />
     <link rel="canonical" href="${SITE}/" />
 ${hreflangLinks()}
     <link rel="alternate" hreflang="x-default" href="${SITE}/en/" />
-    <link rel="icon" href="./favicon.ico" type="image/x-icon" sizes="32x32" />
+${FAVICON_LINKS_ROOT}
     <meta name="theme-color" content="#fffbf7" />`
 }
 

@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import type { LocaleBundle } from '../locales'
 import { assetHref } from '../lib/locale'
-import './garsejaPlayer.css'
+import './garsioPlayer.css'
 
 function PlayIcon({ className }: { className?: string }) {
   return (
@@ -178,7 +178,7 @@ export function Player({
             step={0.01}
             value={progressValue}
             onChange={(e) => seek(Number(e.target.value))}
-            className="garsejaPlayerRange w-full"
+            className="garsioPlayerRange w-full"
             style={{ ['--progress' as string]: progressPercent }}
             aria-label="Seek"
             disabled={!canSeek}
@@ -187,12 +187,12 @@ export function Player({
           <div className="w-11 shrink-0 text-right">
             <div className="text-xs leading-none text-slate-400 tabular-nums">{formatTime(duration)}</div>
             <a
-              href="https://garseja.lt"
+              href="https://garsio.io"
               target="_blank"
               rel="noreferrer"
               className="text-xs text-slate-500 hover:text-slate-700"
             >
-              garseja.lt
+              garsio.io
             </a>
           </div>
         </div>
@@ -223,12 +223,12 @@ export function Player({
           </div>
 
           <a
-            href="https://garseja.lt"
+            href="https://garsio.io"
             target="_blank"
             rel="noreferrer"
             className="shrink-0 text-xs text-slate-500 hover:text-slate-700"
           >
-            garseja.lt
+            garsio.io
           </a>
         </div>
       )}

@@ -256,9 +256,8 @@ body {
 .brand-logo {
   height: 2rem;
   width: auto;
-  max-width: 10rem;
+  max-width: 12.5rem;
   flex-shrink: 0;
-  object-fit: contain;
 }
 
 .btn-primary {

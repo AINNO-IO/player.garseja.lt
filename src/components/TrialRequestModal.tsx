@@ -81,7 +81,7 @@ export function TrialRequestModal({ open, onClose, locale, ui, ctaLabel }: Props
     setErrorMessage('')
 
     const message = [
-      `Demo request from player.garseja.lt`,
+      `Demo request from player.garsio.io`,
       `Locale: ${locale} (${langLabel})`,
       `Article URL: ${articleUrl.trim() || '(not provided)'}`,
       '',
@@ -95,7 +95,7 @@ export function TrialRequestModal({ open, onClose, locale, ui, ctaLabel }: Props
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({
           access_key: accessKey,
-          subject: 'Garsėja demo — Website request',
+          subject: 'Garsio demo — Website request',
           email: email.trim(),
           message,
           botcheck: false,

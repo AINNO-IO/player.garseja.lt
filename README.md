@@ -1,6 +1,6 @@
-# `player.garseja.lt` — static multilingual demo
+# `player.garsio.io` — static multilingual demo
 
-Static one-page multilingual demo landing page for the **Garsėja** website article audio player.
+Static one-page multilingual demo landing page for the **Garsio** website article audio player.
 
 ## Requirements
 - Node.js **20.11+** (this repo is pinned to Vite 5 for compatibility).
@@ -71,5 +71,5 @@ This project is designed to work on GitHub Pages **without server rewrites** by 
 - relative navigation between locales
 - relative asset paths (Vite `base: './'`)
 
-If you use a custom domain root (like `player.garseja.lt`), the same build works.
+If you use a custom domain root (like `player.garsio.io`), the same build works.
 

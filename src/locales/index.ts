@@ -67,7 +67,7 @@ export const LOCALES: Record<Locale, LocaleBundle> = {
     locale: 'en',
     languageName: 'English',
     landing: {
-      navBrand: 'Garsėja',
+      navBrand: 'Garsio',
       navTagline: 'Article audio player for publishers',
       heroTitle: 'Let readers listen instead of scroll.',
       heroSubtitle:
@@ -116,7 +116,7 @@ export const LOCALES: Record<Locale, LocaleBundle> = {
     locale: 'lt',
     languageName: 'Lietuvių',
     landing: {
-      navBrand: 'Garsėja',
+      navBrand: 'Garsio',
       navTagline: 'Straipsnių audio grotuvas leidėjams',
       heroTitle: 'Leiskite skaitytojams klausytis jūsų straipsnių.',
       heroSubtitle:
@@ -167,7 +167,7 @@ export const LOCALES: Record<Locale, LocaleBundle> = {
     locale: 'cs',
     languageName: 'Čeština',
     landing: {
-      navBrand: 'Garsėja',
+      navBrand: 'Garsio',
       navTagline: 'Audio přehrávač článků pro vydavatele',
       heroTitle: 'Proměňte články na audio během pár minut.',
       heroSubtitle:
@@ -216,7 +216,7 @@ export const LOCALES: Record<Locale, LocaleBundle> = {
     locale: 'sk',
     languageName: 'Slovenčina',
     landing: {
-      navBrand: 'Garsėja',
+      navBrand: 'Garsio',
       navTagline: 'Audio prehrávač článkov pre vydavateľov',
       heroTitle: 'Zmeňte články na audio za pár minút.',
       heroSubtitle:
@@ -265,7 +265,7 @@ export const LOCALES: Record<Locale, LocaleBundle> = {
     locale: 'hu',
     languageName: 'Magyar',
     landing: {
-      navBrand: 'Garsėja',
+      navBrand: 'Garsio',
       navTagline: 'Cikk-hanglejátszó kiadóknak',
       heroTitle: 'Alakítsd a cikkeket hanggá néhány perc alatt.',
       heroSubtitle:
@@ -314,7 +314,7 @@ export const LOCALES: Record<Locale, LocaleBundle> = {
     locale: 'ro',
     languageName: 'Română',
     landing: {
-      navBrand: 'Garsėja',
+      navBrand: 'Garsio',
       navTagline: 'Player audio pentru articole, pentru publisheri',
       heroTitle: 'Transformă articolele în audio în câteva minute.',
       heroSubtitle:
@@ -363,7 +363,7 @@ export const LOCALES: Record<Locale, LocaleBundle> = {
     locale: 'bg',
     languageName: 'Български',
     landing: {
-      navBrand: 'Garsėja',
+      navBrand: 'Garsio',
       navTagline: 'Аудио плейър за статии за издатели',
       heroTitle: 'Превърнете статиите в аудио за минути.',
       heroSubtitle:
@@ -412,7 +412,7 @@ export const LOCALES: Record<Locale, LocaleBundle> = {
     locale: 'hr',
     languageName: 'Hrvatski',
     landing: {
-      navBrand: 'Garsėja',
+      navBrand: 'Garsio',
       navTagline: 'Audio player za članke za izdavače',
       heroTitle: 'Pretvorite članke u audio za nekoliko minuta.',
       heroSubtitle:
@@ -461,7 +461,7 @@ export const LOCALES: Record<Locale, LocaleBundle> = {
     locale: 'sr',
     languageName: 'Srpski',
     landing: {
-      navBrand: 'Garsėja',
+      navBrand: 'Garsio',
       navTagline: 'Audio plejer za članke za izdavače',
       heroTitle: 'Pretvorite članke u audio za nekoliko minuta.',
       heroSubtitle:
@@ -510,7 +510,7 @@ export const LOCALES: Record<Locale, LocaleBundle> = {
     locale: 'sl',
     languageName: 'Slovenščina',
     landing: {
-      navBrand: 'Garsėja',
+      navBrand: 'Garsio',
       navTagline: 'Avdio predvajalnik člankov za založnike',
       heroTitle: 'Spremenite članke v avdio v nekaj minutah.',
       heroSubtitle:
@@ -559,7 +559,7 @@ export const LOCALES: Record<Locale, LocaleBundle> = {
     locale: 'de',
     languageName: 'Deutsch',
     landing: {
-      navBrand: 'Garsėja',
+      navBrand: 'Garsio',
       navTagline: 'Audio-Player für Artikel (für Publisher)',
       heroTitle: 'Let readers listen instead of scroll.',
       heroSubtitle:
@@ -608,7 +608,7 @@ export const LOCALES: Record<Locale, LocaleBundle> = {
     locale: 'es',
     languageName: 'Español',
     landing: {
-      navBrand: 'Garsėja',
+      navBrand: 'Garsio',
       navTagline: 'Reproductor de audio para artículos (para publishers)',
       heroTitle: 'Let readers listen instead of scroll.',
       heroSubtitle:
@@ -657,7 +657,7 @@ export const LOCALES: Record<Locale, LocaleBundle> = {
     locale: 'da',
     languageName: 'Dansk',
     landing: {
-      navBrand: 'Garsėja',
+      navBrand: 'Garsio',
       navTagline: 'Lydafspiller til artikler (til udgivere)',
       heroTitle: 'Let readers listen instead of scroll.',
       heroSubtitle:
@@ -706,7 +706,7 @@ export const LOCALES: Record<Locale, LocaleBundle> = {
     locale: 'sv',
     languageName: 'Svenska',
     landing: {
-      navBrand: 'Garsėja',
+      navBrand: 'Garsio',
       navTagline: 'Ljudspelare för artiklar (för publicister)',
       heroTitle: 'Let readers listen instead of scroll.',
       heroSubtitle:
@@ -755,7 +755,7 @@ export const LOCALES: Record<Locale, LocaleBundle> = {
     locale: 'no',
     languageName: 'Norsk',
     landing: {
-      navBrand: 'Garsėja',
+      navBrand: 'Garsio',
       navTagline: 'Lydspiller for artikler (for publisister)',
       heroTitle: 'Let readers listen instead of scroll.',
       heroSubtitle:
@@ -804,7 +804,7 @@ export const LOCALES: Record<Locale, LocaleBundle> = {
     locale: 'fi',
     languageName: 'Suomi',
     landing: {
-      navBrand: 'Garsėja',
+      navBrand: 'Garsio',
       navTagline: 'Artikkelien äänisoitin julkaisijoille',
       heroTitle: 'Let readers listen instead of scroll.',
       heroSubtitle:

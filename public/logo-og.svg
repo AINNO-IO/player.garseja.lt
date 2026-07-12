@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" fill="none" role="img" aria-label="Garsio Player">
+  <rect width="1200" height="630" fill="#1A1614" />
+  <g transform="translate(166 245) scale(3.5)">
+    <rect x="0" y="26" width="5" height="14" rx="2.5" fill="#F26522" />
+    <rect x="8" y="18" width="5" height="22" rx="2.5" fill="#F26522" />
+    <rect x="16" y="22" width="5" height="18" rx="2.5" fill="#FDFBF7" />
+    <rect x="24" y="8" width="5" height="32" rx="2.5" fill="#F26522" />
+    <rect x="32" y="30" width="5" height="10" rx="2.5" fill="#FDFBF7" />
+    <text
+      x="46"
+      y="29"
+      font-family="'Plus Jakarta Sans', system-ui, sans-serif"
+      font-size="22"
+      font-weight="700"
+      letter-spacing="-0.02em"
+    >
+      <tspan fill="#FDFBF7">Garsio </tspan>
+      <tspan fill="#F26522">Player</tspan>
+    </text>
+  </g>
+</svg>

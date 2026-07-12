@@ -1,6 +1,7 @@
 import { LOCALES, type Locale } from './locales'
 import { getPageUi } from './locales/pageUi'
-import { assetHref, getInitialLocale, localeHref } from './lib/locale'
+import { getInitialLocale, localeHref } from './lib/locale'
+import { GarsioLogo } from './components/GarsioLogo'
 import { Player } from './components/Player'
 import { TrialRequestModal } from './components/TrialRequestModal'
 import { HeroVisual, PageBackground } from './components/PageDecor'
@@ -298,14 +299,7 @@ function App() {
       <header className="site-header">
         <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-4 py-3.5">
           <a href="#" className="flex min-w-0 items-center gap-3">
-            <img
-              src={assetHref('logo.png')}
-              alt={bundle.landing.navBrand}
-              width={160}
-              height={36}
-              className="brand-logo"
-              decoding="async"
-            />
+            <GarsioLogo className="brand-logo" />
             <span className="hidden truncate text-xs text-[#5c6f82] md:block">{bundle.landing.navTagline}</span>
           </a>
 
@@ -320,7 +314,7 @@ function App() {
         <section className="mx-auto w-full max-w-6xl px-4 pb-6 pt-10 sm:pt-14">
           <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10">
             <div className="reveal">
-              <p className="text-xs font-bold uppercase tracking-[0.18em] text-accent-dark">Garsėja</p>
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-accent-dark">Garsio</p>
               <h1 className="mt-3 text-balance font-sans text-[2.35rem] font-bold leading-[1.12] tracking-tight text-[#152535] sm:text-5xl lg:text-[3.1rem]">
                 {bundle.landing.heroTitle}
               </h1>
@@ -455,7 +449,7 @@ function App() {
             <p className="text-sm font-semibold text-[#152535]">{bundle.landing.footerCta}</p>
             <p className="mt-1 text-sm text-[#5c6f82]">{bundle.landing.footerNote}</p>
           </div>
-          <p className="text-xs text-[#5c6f82]">© {new Date().getFullYear()} Garsėja</p>
+          <p className="text-xs text-[#5c6f82]">© {new Date().getFullYear()} Garsio</p>
         </div>
       </footer>
     </div>

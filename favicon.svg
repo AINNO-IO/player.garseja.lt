@@ -1,11 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 76 45" fill="none" aria-hidden="true">
-  <g fill="#d9965b">
-    <rect x="2" y="24" width="5" height="16" rx="2.5" />
-    <rect x="12" y="18" width="5" height="22" rx="2.5" />
-    <rect x="22" y="10" width="5" height="30" rx="2.5" />
-    <rect x="35.5" y="4" width="5" height="36" rx="2.5" />
-    <rect x="49" y="10" width="5" height="30" rx="2.5" />
-    <rect x="59" y="18" width="5" height="22" rx="2.5" />
-    <rect x="69" y="24" width="5" height="16" rx="2.5" />
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+  <rect width="40" height="40" rx="8" fill="#fffbf7" />
+  <rect x="5" y="22" width="4" height="12" rx="2" fill="#F26522" />
+  <rect x="12" y="16" width="4" height="18" rx="2" fill="#F26522" />
+  <rect x="19" y="19" width="4" height="15" rx="2" fill="#1A1714" />
+  <rect x="26" y="8" width="4" height="26" rx="2" fill="#F26522" />
+  <rect x="33" y="26" width="4" height="8" rx="2" fill="#1A1714" />
 </svg>

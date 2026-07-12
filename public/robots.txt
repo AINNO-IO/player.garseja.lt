@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://player.garseja.lt/sitemap.xml
+Sitemap: https://player.garsio.io/sitemap.xml
