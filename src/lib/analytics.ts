@@ -10,7 +10,14 @@
 
 type EventData = Record<string, string | number | boolean>
 
-const WEBSITE_ID = import.meta.env.VITE_UMAMI_WEBSITE_ID?.trim() ?? ''
+/** Accept a bare website id or a pasted Umami `<script …data-website-id="…">` snippet. */
+function resolveWebsiteId(raw: string | undefined): string {
+  const v = raw?.trim() ?? ''
+  const uuid = v.match(/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i)
+  return uuid ? uuid[0] : v.includes('<') ? '' : v
+}
+
+const WEBSITE_ID = resolveWebsiteId(import.meta.env.VITE_UMAMI_WEBSITE_ID)
 const SCRIPT_URL = import.meta.env.VITE_UMAMI_SCRIPT_URL?.trim() || 'https://cloud.umami.is/script.js'
 
 export const analyticsEnabled = WEBSITE_ID.length > 0
