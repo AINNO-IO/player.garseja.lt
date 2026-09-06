@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { LOCALES, type Locale } from './locales'
 import { getPageUi } from './locales/pageUi'
-import { getSiteCopy, garsioHref, LEGAL_LINKS } from './locales/siteCopy'
+import { getSiteCopy, garsioHref, LEGAL_LINKS, COMPANY_LABEL } from './locales/siteCopy'
 import { localeHref } from './lib/locale'
 import { GarsioLogo } from './components/GarsioLogo'
 import { Player } from './components/Player'
@@ -487,9 +487,10 @@ function App({ locale }: { locale: Locale }) {
 
       {/* ── Footer ── */}
       <footer className="container-wide site-footer">
-        <div className="flex items-center gap-2.5">
+        <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1">
           <GarsioLogo size="sm" />
           <span>© {new Date().getFullYear()}</span>
+          <span>{COMPANY_LABEL}</span>
         </div>
         <div className="site-footer__links">
           <a href="https://garsio.io/" target="_blank" rel="noreferrer">
@@ -505,7 +506,6 @@ function App({ locale }: { locale: Locale }) {
             info@ainno.io
           </a>
         </div>
-        <p className="site-footer__company">{copy.companyLine}</p>
         {/* Static language links so every locale is crawlable without opening the dropdown */}
         <nav className="site-footer__langs" aria-label={ui.ariaLanguageMenu}>
           {languageOptions.map((opt) => (

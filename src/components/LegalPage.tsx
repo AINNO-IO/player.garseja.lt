@@ -1,5 +1,6 @@
 import { GarsioLogo } from './GarsioLogo'
 import type { LegalDoc } from '../legal/types'
+import { COMPANY_LABEL } from '../locales/siteCopy'
 
 /**
  * Shell for the Terms / Privacy pages, mirroring the Claude Design
@@ -48,9 +49,10 @@ export function LegalPage({ doc, backHref, termsHref, privacyHref }: {
       </main>
 
       <footer className="legal__footer">
-        <div className="flex items-center gap-2.5">
+        <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1">
           <GarsioLogo size="sm" />
           <span>© {new Date().getFullYear()}</span>
+          <span>{COMPANY_LABEL}</span>
         </div>
         <div className="site-footer__links">
           <a href={termsHref}>Naudojimosi taisyklės</a>

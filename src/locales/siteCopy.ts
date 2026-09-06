@@ -30,7 +30,6 @@ export type SiteCopy = {
   listenLabel: string
   setupTitle: string
   steps: readonly [SetupStep, SetupStep, SetupStep]
-  companyLine: string
   monKicker: string
   monTitle: string
   monBody: string
@@ -75,6 +74,9 @@ export type SiteCopy = {
   footPrivacy: string
 }
 
+/** Legal entity shown in the footer next to the copyright. */
+export const COMPANY_LABEL = 'MB „AI sprendimai“ (306416097)'
+
 const PROMO_AUDIO = {
   ads: 'audio/promo/ads.mp3',
   learning: 'audio/promo/learning.mp3',
@@ -103,7 +105,6 @@ const EN: SiteCopy = {
       desc: 'A play button appears on your articles. Audio stays in sync with your content.',
     },
   ],
-  companyLine: 'Garsio Player is a product of MB „AI sprendimai“, Laisvės g. 13-1, Bukiškio k., Vilniaus r., Lithuania.',
   monKicker: 'Monetisation',
   monTitle: 'Listening that pays for itself',
   monBody:
@@ -233,7 +234,6 @@ const LT: SiteCopy = {
     { n: '2', title: 'Įdėk grotuvą į svetainę', desc: 'Keli paprasti žingsniai pagal instrukciją.' },
     { n: '3', title: 'Grotuvas veikia', desc: 'Prie straipsnių atsiranda „Klausyti“ mygtukas.' },
   ],
-  companyLine: '„Garsio Player“ — MB „AI sprendimai“ produktas. Laisvės g. 13-1, Bukiškio k., Vilniaus r., Lietuva.',
   monKicker: 'Papildomos pajamos',
   monTitle: 'Grotuvas, kuris uždirba',
   monBody:

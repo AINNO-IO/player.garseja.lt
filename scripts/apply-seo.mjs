@@ -77,12 +77,7 @@ function jsonLd({ locale, title, description, url }) {
           url: 'https://garsio.io/',
           email: 'info@ainno.io',
           legalName: 'MB „AI sprendimai“',
-          address: {
-            '@type': 'PostalAddress',
-            streetAddress: 'Laisvės g. 13-1',
-            addressLocality: 'Bukiškio k., Vilniaus r.',
-            addressCountry: 'LT',
-          },
+          identifier: '306416097',
           logo: { '@type': 'ImageObject', url: `${SITE}/logo.png` },
         },
         {

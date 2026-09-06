@@ -710,14 +710,6 @@ body {
   text-wrap: pretty;
 }
 
-.site-footer__company {
-  flex-basis: 100%;
-  margin: 0;
-  font-size: 13px;
-  color: var(--color-ink-faint);
-  text-wrap: pretty;
-}
-
 /* ── Monetisation ── */
 .mon {
   border-radius: 28px;
