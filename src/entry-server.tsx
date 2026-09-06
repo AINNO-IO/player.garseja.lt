@@ -32,7 +32,7 @@ export function render(opts: { locale: string; page?: PageKind }): RenderResult 
     mainEntity: copy.faqs.map((f) => ({
       '@type': 'Question',
       name: f.q,
-      acceptedAnswer: { '@type': 'Answer', text: f.a },
+      acceptedAnswer: { '@type': 'Answer', text: Array.isArray(f.a) ? f.a.join('\n\n') : f.a },
     })),
   }
   return { html, jsonLd }

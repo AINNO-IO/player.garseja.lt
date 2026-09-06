@@ -29,7 +29,9 @@ export function Faq({ items }: { items: readonly FaqItem[] }) {
               </span>
             </button>
             <div id={panelId} className="faq__a" hidden={!expanded}>
-              <p>{f.a}</p>
+              {(Array.isArray(f.a) ? f.a : [f.a]).map((para) => (
+                <p key={para}>{para}</p>
+              ))}
             </div>
           </div>
         )

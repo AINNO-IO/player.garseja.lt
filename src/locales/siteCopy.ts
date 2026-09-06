@@ -12,9 +12,9 @@ import type { PageUiStrings } from './pageUi'
  */
 
 export type SetupStep = { n: string; title: string; desc: string }
-export type FaqItem = { q: string; a: string }
+/** `a` may be one paragraph or several. */
+export type FaqItem = { q: string; a: string | readonly string[] }
 export type PromoVoice = { name: string; desc: string; audioPathFromRoot: string }
-export type InfoCard = { title: string; desc: string }
 
 export type SiteCopy = {
   navCta: string
@@ -30,17 +30,6 @@ export type SiteCopy = {
   listenLabel: string
   setupTitle: string
   steps: readonly [SetupStep, SetupStep, SetupStep]
-  howTitle: string
-  howIntro: string
-  howItems: readonly [InfoCard, InfoCard, InfoCard, InfoCard]
-  langsTitle: string
-  langsIntro: string
-  /** Label before the voice names in the language grid, e.g. "Voices". */
-  langsVoicesLabel: string
-  whyTitle: string
-  whyItems: readonly [InfoCard, InfoCard, InfoCard]
-  forTitle: string
-  forCards: readonly [InfoCard, InfoCard, InfoCard, InfoCard]
   companyLine: string
   monKicker: string
   monTitle: string
@@ -114,65 +103,6 @@ const EN: SiteCopy = {
       desc: 'A play button appears on your articles. Audio stays in sync with your content.',
     },
   ],
-  howTitle: 'How the integration works',
-  howIntro:
-    'Garsio Player is a small script that turns each article into an audio track and shows a play button where you place it.',
-  howItems: [
-    {
-      title: 'One script tag',
-      desc: 'Add the Garsio snippet to your article template or through your tag manager. No backend changes — it works with WordPress, Drupal and custom CMSs alike.',
-    },
-    {
-      title: 'Automatic narration',
-      desc: 'When an article is published, its text is converted to speech once. The audio is ready within minutes and reused for every listener.',
-    },
-    {
-      title: 'Stays in sync with the text',
-      desc: 'If you edit the article, the audio is regenerated automatically. Only the new conversion counts toward your character allowance.',
-    },
-    {
-      title: 'Placement that gets heard',
-      desc: 'The player fits above the first paragraph, next to the byline or in a sticky bar, and takes your brand colour. The widget loads asynchronously.',
-    },
-  ],
-  langsTitle: 'Natural voices in 16 languages',
-  langsIntro:
-    'Every language comes with at least two natural-sounding voices. Switch the language on this page to hear the demo article read by each voice; when you go live, choose the voice per site or per section.',
-  langsVoicesLabel: 'Voices',
-  whyTitle: 'Why publishers add audio',
-  whyItems: [
-    {
-      title: 'More time with your content',
-      desc: 'Listeners stay with a story while walking, driving or cooking — moments when reading is not an option.',
-    },
-    {
-      title: 'Accessibility by default',
-      desc: 'Audio versions help readers with visual impairments, dyslexia or low literacy, and support accessibility requirements for public-sector sites.',
-    },
-    {
-      title: 'A new revenue line',
-      desc: 'Short audio ads before or during playback turn listening into income, on top of your existing display inventory.',
-    },
-  ],
-  forTitle: 'Built for publishers of every size',
-  forCards: [
-    {
-      title: 'News portals',
-      desc: 'Give commuters a way to follow the day’s stories hands-free and keep them on your site longer.',
-    },
-    {
-      title: 'Magazines and long reads',
-      desc: 'Long features suit listening. Audio makes a 3,000-word piece approachable on a phone.',
-    },
-    {
-      title: 'Blogs and newsletters',
-      desc: 'Add an audio version to every post without recording anything yourself.',
-    },
-    {
-      title: 'Public institutions and NGOs',
-      desc: 'Meet accessibility expectations for readers with visual impairments or reading difficulties, in every language you publish in.',
-    },
-  ],
   companyLine: 'Garsio Player is a product of MB „AI sprendimai“, Laisvės g. 13-1, Bukiškio k., Vilniaus r., Lithuania.',
   monKicker: 'Monetisation',
   monTitle: 'Listening that pays for itself',
@@ -225,8 +155,49 @@ const EN: SiteCopy = {
       a: 'Garsio Player is a text-to-speech (TTS) player that turns your written content into high-quality audio — so visitors can listen to articles, blogs, and other text-based content, not just read it.',
     },
     {
+      q: 'How does the integration work?',
+      a: [
+        'Garsio Player is a small script that turns each article into an audio track and shows a play button where you place it. You add the snippet to your article template or through your tag manager — no backend changes, and it works with WordPress, Drupal and custom CMSs alike.',
+        'When an article is published, its text is converted to speech once. The audio is ready within minutes and reused for every listener. If you edit the article, the audio is regenerated automatically and only the new conversion counts toward your character allowance.',
+        'The player fits above the first paragraph, next to the byline or in a sticky bar, takes your brand colour and loads asynchronously.',
+      ],
+    },
+    {
       q: 'How easy is it to integrate?',
       a: 'Integration is simple — usually under a couple of hours, including testing and deployment, and our support team is there to help at every step. We recommend placing the player above the first line of the article, where it’s most visible and easy for listeners to reach.',
+    },
+    {
+      q: 'Which languages and voices are available?',
+      a: 'Garsio Player currently speaks 16 languages: English, Lithuanian, Czech, Slovak, Hungarian, Romanian, Bulgarian, Croatian, Serbian, Slovenian, German, Spanish, Danish, Swedish, Norwegian and Finnish, each with at least two natural-sounding voices. You can preview every voice on this page by switching the language, and choose the voice per site, per section or per article when you go live.',
+    },
+    {
+      q: 'Who is Garsio Player for?',
+      a: [
+        'News portals: give commuters a way to follow the day’s stories hands-free and keep them on your site longer.',
+        'Magazines and long reads: long features suit listening, and audio makes a 3,000-word piece approachable on a phone.',
+        'Blogs and newsletters: add an audio version to every post without recording anything yourself.',
+        'Public institutions and NGOs: meet accessibility expectations for readers with visual impairments or reading difficulties, in every language you publish in.',
+      ],
+    },
+    {
+      q: 'Why do publishers add audio to articles?',
+      a: [
+        'More time with your content: listeners stay with a story while walking, driving or cooking — moments when reading is not an option.',
+        'Accessibility by default: audio versions help readers with visual impairments, dyslexia or low literacy, and support accessibility requirements for public-sector sites.',
+        'A new revenue line: short audio ads before or during playback turn listening into income, on top of your existing display inventory.',
+      ],
+    },
+    {
+      q: 'Does the player work with WordPress and other CMSs?',
+      a: 'Yes. The player is a single script tag, so it works with WordPress, Drupal, Joomla, Webflow, custom CMSs and tag managers alike. We send step-by-step instructions for your platform when you start the trial.',
+    },
+    {
+      q: 'Does the audio player slow down my website?',
+      a: 'No. The script loads asynchronously after your page content, and audio is streamed only when a reader presses play.',
+    },
+    {
+      q: 'How much does it cost?',
+      a: 'Pricing is based on the number of characters converted per month, starting from 20 € per month, with a 15% discount on yearly billing. Use the calculator above for an estimate; for very large volumes we prepare an individual offer.',
     },
     {
       q: 'How many people can listen to a single piece of content?',
@@ -239,26 +210,6 @@ const EN: SiteCopy = {
     {
       q: 'What happens when I run out of characters?',
       a: 'Existing audio keeps working seamlessly, but the player won’t appear on new content. You can upgrade your plan or purchase additional characters at any time to keep using Garsio Player for new content.',
-    },
-    {
-      q: 'Which languages and voices are available?',
-      a: 'Garsio Player currently speaks 16 languages: English, Lithuanian, Czech, Slovak, Hungarian, Romanian, Bulgarian, Croatian, Serbian, Slovenian, German, Spanish, Danish, Swedish, Norwegian and Finnish, each with at least two voices. You can preview every voice on this page by switching the language.',
-    },
-    {
-      q: 'Does the player work with WordPress and other CMSs?',
-      a: 'Yes. The player is a single script tag, so it works with WordPress, Drupal, Joomla, Webflow, custom CMSs and tag managers alike. We send step-by-step instructions for your platform when you start the trial.',
-    },
-    {
-      q: 'How much does it cost?',
-      a: 'Pricing is based on the number of characters converted per month, starting from 20 € per month, with a 15% discount on yearly billing. Use the calculator above for an estimate; for very large volumes we prepare an individual offer.',
-    },
-    {
-      q: 'Does the audio player slow down my website?',
-      a: 'No. The script loads asynchronously after your page content, and audio is streamed only when a reader presses play.',
-    },
-    {
-      q: 'Can I use different voices for different sections?',
-      a: 'Yes. Language and voice can be set per site, per section or per article, so sports and business content can sound different.',
     },
   ],
   footTerms: 'Terms of Use',
@@ -281,65 +232,6 @@ const LT: SiteCopy = {
     { n: '1', title: 'Užpildyk formą', desc: 'Atsiųsime trumpą diegimo instrukciją.' },
     { n: '2', title: 'Įdėk grotuvą į svetainę', desc: 'Keli paprasti žingsniai pagal instrukciją.' },
     { n: '3', title: 'Grotuvas veikia', desc: 'Prie straipsnių atsiranda „Klausyti“ mygtukas.' },
-  ],
-  howTitle: 'Kaip veikia integracija',
-  howIntro:
-    '„Garsio Player“ — nedidelis skriptas, kuris kiekvieną straipsnį paverčia garso įrašu ir parodo „Klausyti“ mygtuką ten, kur jį įdėsi.',
-  howItems: [
-    {
-      title: 'Vienas skripto tagas',
-      desc: 'Įdėk „Garsio“ kodo fragmentą į straipsnio šabloną arba per žymų tvarkyklę. Serverio dalies keisti nereikia — tinka WordPress, Drupal ir individualioms TVS.',
-    },
-    {
-      title: 'Automatinis įgarsinimas',
-      desc: 'Paskelbus straipsnį, jo tekstas į garsą konvertuojamas vieną kartą. Įrašas paruošiamas per kelias minutes ir naudojamas visiems klausytojams.',
-    },
-    {
-      title: 'Visada sutampa su tekstu',
-      desc: 'Pataisius straipsnį, garsas sugeneruojamas iš naujo automatiškai. Į simbolių limitą skaičiuojama tik nauja konversija.',
-    },
-    {
-      title: 'Vieta, kurią pastebi',
-      desc: 'Grotuvas tinka virš pirmos pastraipos, prie autoriaus eilutės ar prilipusioje juostoje ir perima tavo prekės ženklo spalvą. Valdiklis įkeliamas asinchroniškai.',
-    },
-  ],
-  langsTitle: 'Natūralūs balsai 16 kalbų',
-  langsIntro:
-    'Kiekviena kalba turi bent du natūraliai skambančius balsus. Perjunk kalbą šiame puslapyje ir išgirsk, kaip demo straipsnį skaito kiekvienas balsas, o paleidus grotuvą balsą rinksi visai svetainei ar atskirai rubrikai.',
-  langsVoicesLabel: 'Balsai',
-  whyTitle: 'Kodėl leidėjai prideda garsą',
-  whyItems: [
-    {
-      title: 'Daugiau laiko su tavo turiniu',
-      desc: 'Klausytojai lieka su istorija einant, vairuojant ar gaminant — tada, kai skaityti neįmanoma.',
-    },
-    {
-      title: 'Prieinamumas iš karto',
-      desc: 'Garso versijos padeda skaitytojams su regos sutrikimais, disleksija ar silpnesniais skaitymo įgūdžiais ir padeda atitikti viešojo sektoriaus prieinamumo reikalavimus.',
-    },
-    {
-      title: 'Nauja pajamų eilutė',
-      desc: 'Trumpa garso reklama prieš įrašą ar jo metu klausymą paverčia pajamomis — papildomai prie esamos reklamos.',
-    },
-  ],
-  forTitle: 'Sukurta visų dydžių leidėjams',
-  forCards: [
-    {
-      title: 'Naujienų portalai',
-      desc: 'Leisk keliaujantiems sekti dienos naujienas neliečiant ekrano ir ilgiau išlaikyk juos savo svetainėje.',
-    },
-    {
-      title: 'Žurnalai ir ilgi tekstai',
-      desc: 'Ilgi straipsniai puikiai tinka klausyti. Garsas 3000 žodžių tekstą padaro patogų ir telefone.',
-    },
-    {
-      title: 'Tinklaraščiai ir naujienlaiškiai',
-      desc: 'Pridėk garso versiją prie kiekvieno įrašo nieko neįrašinėdamas pats.',
-    },
-    {
-      title: 'Viešasis sektorius ir NVO',
-      desc: 'Atitik prieinamumo reikalavimus skaitytojams su regos ar skaitymo sutrikimais — visomis kalbomis, kuriomis publikuoji.',
-    },
   ],
   companyLine: '„Garsio Player“ — MB „AI sprendimai“ produktas. Laisvės g. 13-1, Bukiškio k., Vilniaus r., Lietuva.',
   monKicker: 'Papildomos pajamos',
@@ -393,8 +285,49 @@ const LT: SiteCopy = {
       a: 'Grotuvas, kuris automatiškai įgarsina tavo straipsnius natūraliu balsu, kad lankytojai galėtų juos ne tik skaityti, bet ir klausyti.',
     },
     {
+      q: 'Kaip veikia integracija?',
+      a: [
+        '„Garsio Player“ — nedidelis skriptas, kuris kiekvieną straipsnį paverčia garso įrašu ir parodo „Klausyti“ mygtuką ten, kur jį įdėsi. Kodo fragmentą įdedi į straipsnio šabloną arba per žymų tvarkyklę — serverio dalies keisti nereikia, tinka WordPress, Drupal ir individualioms TVS.',
+        'Paskelbus straipsnį, jo tekstas į garsą konvertuojamas vieną kartą. Įrašas paruošiamas per kelias minutes ir naudojamas visiems klausytojams. Pataisius straipsnį, garsas sugeneruojamas iš naujo automatiškai, o į simbolių limitą skaičiuojama tik nauja konversija.',
+        'Grotuvas tinka virš pirmos pastraipos, prie autoriaus eilutės ar prilipusioje juostoje, perima tavo prekės ženklo spalvą ir įkeliamas asinchroniškai.',
+      ],
+    },
+    {
       q: 'Ar sudėtinga įdiegti?',
       a: 'Diegimas paprastas — paprastai užtrunka vos porą valandų, įskaitant testavimą ir paleidimą, o mūsų komanda padės kiekviename žingsnyje. Rekomenduojame grotuvą įdėti virš pirmos straipsnio eilutės — ten jis geriausiai matomas ir lengvai pasiekiamas.',
+    },
+    {
+      q: 'Kokios kalbos ir balsai prieinami?',
+      a: '„Garsio Player“ šiuo metu kalba 16 kalbų: anglų, lietuvių, čekų, slovakų, vengrų, rumunų, bulgarų, kroatų, serbų, slovėnų, vokiečių, ispanų, danų, švedų, norvegų ir suomių — kiekviena su bent dviem natūraliai skambančiais balsais. Visus balsus gali išgirsti šiame puslapyje perjungęs kalbą, o paleidus grotuvą balsą rinksi visai svetainei, atskirai rubrikai ar straipsniui.',
+    },
+    {
+      q: 'Kam skirtas „Garsio Player“?',
+      a: [
+        'Naujienų portalams: leisk keliaujantiems sekti dienos naujienas neliečiant ekrano ir ilgiau išlaikyk juos savo svetainėje.',
+        'Žurnalams ir ilgiems tekstams: ilgi straipsniai puikiai tinka klausyti, o garsas 3000 žodžių tekstą padaro patogų ir telefone.',
+        'Tinklaraščiams ir naujienlaiškiams: pridėk garso versiją prie kiekvieno įrašo nieko neįrašinėdamas pats.',
+        'Viešajam sektoriui ir NVO: atitik prieinamumo reikalavimus skaitytojams su regos ar skaitymo sutrikimais — visomis kalbomis, kuriomis publikuoji.',
+      ],
+    },
+    {
+      q: 'Kodėl leidėjai prideda garsą prie straipsnių?',
+      a: [
+        'Daugiau laiko su tavo turiniu: klausytojai lieka su istorija einant, vairuojant ar gaminant — tada, kai skaityti neįmanoma.',
+        'Prieinamumas iš karto: garso versijos padeda skaitytojams su regos sutrikimais, disleksija ar silpnesniais skaitymo įgūdžiais ir padeda atitikti viešojo sektoriaus prieinamumo reikalavimus.',
+        'Nauja pajamų eilutė: trumpa garso reklama prieš įrašą ar jo metu klausymą paverčia pajamomis — papildomai prie esamos reklamos.',
+      ],
+    },
+    {
+      q: 'Ar grotuvas veikia su WordPress ir kitomis TVS?',
+      a: 'Taip. Grotuvas — vienas skripto tagas, todėl veikia su WordPress, Drupal, Joomla, Webflow, individualiomis TVS ir žymų tvarkyklėmis. Pradėjus bandymą atsiųsime instrukciją tavo platformai.',
+    },
+    {
+      q: 'Ar grotuvas sulėtina svetainę?',
+      a: 'Ne. Skriptas įkeliamas asinchroniškai po puslapio turinio, o garsas transliuojamas tik skaitytojui paspaudus „Klausyti“.',
+    },
+    {
+      q: 'Kiek tai kainuoja?',
+      a: 'Kaina priklauso nuo per mėnesį konvertuojamų simbolių skaičiaus ir prasideda nuo 20 € per mėnesį; mokant už metus taikoma 15 % nuolaida. Pasinaudok skaičiuokle aukščiau, o dideliems kiekiams paruošime individualų pasiūlymą.',
     },
     {
       q: 'Kiek žmonių gali klausyti to paties turinio?',
@@ -407,26 +340,6 @@ const LT: SiteCopy = {
     {
       q: 'Kas nutinka pasibaigus simbolių limitui?',
       a: 'Esamas turinys veikia kaip veikęs, tačiau prie naujo turinio grotuvas neberodomas. Bet kada gali atnaujinti planą arba įsigyti papildomų simbolių ir toliau naudoti „Garsio Player“ naujam turiniui.',
-    },
-    {
-      q: 'Kokios kalbos ir balsai prieinami?',
-      a: '„Garsio Player“ šiuo metu kalba 16 kalbų: anglų, lietuvių, čekų, slovakų, vengrų, rumunų, bulgarų, kroatų, serbų, slovėnų, vokiečių, ispanų, danų, švedų, norvegų ir suomių — kiekviena su bent dviem balsais. Visus balsus gali išgirsti šiame puslapyje perjungęs kalbą.',
-    },
-    {
-      q: 'Ar grotuvas veikia su WordPress ir kitomis TVS?',
-      a: 'Taip. Grotuvas — vienas skripto tagas, todėl veikia su WordPress, Drupal, Joomla, Webflow, individualiomis TVS ir žymų tvarkyklėmis. Pradėjus bandymą atsiųsime instrukciją tavo platformai.',
-    },
-    {
-      q: 'Kiek tai kainuoja?',
-      a: 'Kaina priklauso nuo per mėnesį konvertuojamų simbolių skaičiaus ir prasideda nuo 20 € per mėnesį; mokant už metus taikoma 15 % nuolaida. Pasinaudok skaičiuokle aukščiau, o dideliems kiekiams paruošime individualų pasiūlymą.',
-    },
-    {
-      q: 'Ar grotuvas sulėtina svetainę?',
-      a: 'Ne. Skriptas įkeliamas asinchroniškai po puslapio turinio, o garsas transliuojamas tik skaitytojui paspaudus „Klausyti“.',
-    },
-    {
-      q: 'Ar galiu skirtingoms rubrikoms parinkti skirtingus balsus?',
-      a: 'Taip. Kalbą ir balsą galima nustatyti visai svetainei, atskirai rubrikai ar straipsniui, tad sporto ir verslo turinys gali skambėti skirtingai.',
     },
   ],
   footTerms: 'Naudojimosi taisyklės',
