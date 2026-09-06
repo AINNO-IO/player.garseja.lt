@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import type { LocaleBundle } from '../locales'
 import { assetHref } from '../lib/locale'
 import { PAUSE_OTHERS_EVENT } from '../lib/audioBus'
+import { track } from '../lib/analytics'
 
 function PlayIcon() {
   return (
@@ -83,6 +84,7 @@ export function Player({
     const onEnded = () => {
       setIsPlaying(false)
       setCurrentTime(0)
+      track('demo_ended', { locale: bundle.locale })
     }
 
     audio.addEventListener('play', onPlay)
@@ -112,7 +114,7 @@ export function Player({
       audio.removeEventListener('error', onError)
       audio.removeEventListener('ended', onEnded)
     }
-  }, [])
+  }, [bundle.locale])
 
   // When the source changes, restart audio (and resume if it was playing).
   useEffect(() => {
@@ -133,9 +135,11 @@ export function Player({
     try {
       if (audio.paused) {
         window.dispatchEvent(new CustomEvent(PAUSE_OTHERS_EVENT, { detail: 'demo' }))
+        track('demo_play', { locale: bundle.locale, voice: voice.name, resumed: currentTime > 0 })
         await audio.play()
       } else {
         audio.pause()
+        track('demo_pause', { locale: bundle.locale, at: Math.round(audio.currentTime) })
       }
     } catch {
       setHasError(true)
@@ -146,6 +150,8 @@ export function Player({
   function selectVoice(id: string) {
     if (id === voiceId) return
     resumeAfterSwitch.current = isPlaying
+    const next = bundle.voices.find((v) => v.id === id)
+    track('demo_voice_switch', { locale: bundle.locale, voice: next?.name ?? id, whilePlaying: isPlaying })
     setVoiceId(id)
   }
 

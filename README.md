@@ -43,6 +43,24 @@ VITE_WEB3FORMS_ACCESS_KEY=your_access_key_here
 
 For this repo’s GitHub Pages workflow, add a repository secret named **`VITE_WEB3FORMS_ACCESS_KEY`** (same value as locally). The deploy workflow passes it into `npm run build`.
 
+## Analytics (Umami, cookieless)
+Traffic and behaviour are measured with [Umami](https://umami.is) — no cookies, no personal data, so no consent banner.
+The tracker only loads when `VITE_UMAMI_WEBSITE_ID` is set at build time:
+
+- Locally: add `VITE_UMAMI_WEBSITE_ID=<website id>` to `.env`.
+- GitHub Pages: add a repository **variable** (Settings → Secrets and variables → Actions → Variables) named
+  `VITE_UMAMI_WEBSITE_ID`. The id is public, so it does not need to be a secret.
+- Self-hosted Umami: also set `VITE_UMAMI_SCRIPT_URL`.
+
+Page views (with referrer and `utm_*`) are automatic. Custom events (see `src/lib/analytics.ts` callers):
+`demo_play`, `demo_pause`, `demo_ended`, `demo_voice_switch`, `promo_sample_play`, `calc_change`, `cta_click`
+(position: nav / hero / calculator), `promo_click`, `contact_click`, `lang_switch`, `faq_open`, `trial_submit`,
+`trial_submit_error`. Each page load is tagged with the locale (or `terms` / `privacy`) via `data-tag`.
+
+**Attributing traffic from installed players:** links or redirects that send visitors here from publisher sites
+should carry UTM parameters, e.g. `https://player.garsio.io/lt/?utm_source=player&utm_medium=widget&utm_campaign=<publisher-domain>`.
+The browser referrer alone is unreliable from inside iframes.
+
 ## Build
 ```bash
 npm run build

@@ -3,6 +3,7 @@ import type { Locale } from '../locales'
 import { LOCALES } from '../locales'
 import type { PageUiStrings } from '../locales/pageUi'
 import type { SiteCopy } from '../locales/siteCopy'
+import { track } from '../lib/analytics'
 
 const WEB3FORMS_URL = 'https://api.web3forms.com/submit'
 
@@ -26,6 +27,7 @@ export function TrialForm({ locale, ui, copy }: Props) {
     if (!accessKey) {
       setStatus('error')
       setErrorMessage(ui.trialErrMissingKey)
+      track('trial_submit_error', { locale, reason: 'missing_key' })
       return
     }
 
@@ -56,13 +58,16 @@ export function TrialForm({ locale, ui, copy }: Props) {
       if (!res.ok || !data.success) {
         setStatus('error')
         setErrorMessage(data.message || ui.trialErrGeneric)
+        track('trial_submit_error', { locale, reason: 'rejected' })
         return
       }
 
       setStatus('success')
+      track('trial_submit', { locale, hasWebsite: siteUrl.trim().length > 0 })
     } catch {
       setStatus('error')
       setErrorMessage(ui.trialErrNetwork)
+      track('trial_submit_error', { locale, reason: 'network' })
     }
   }
 

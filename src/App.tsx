@@ -9,6 +9,7 @@ import { TrialForm } from './components/TrialForm'
 import { PricingCalculator } from './components/PricingCalculator'
 import { Faq } from './components/Faq'
 import { PromoVoices } from './components/PromoVoices'
+import { track } from './lib/analytics'
 
 function Flag({ locale, title }: { locale: Locale; title: string }) {
   const common = {
@@ -248,7 +249,10 @@ function LanguageDropdown({
                   key={opt.locale}
                   href={localeHref(locale, opt.locale)}
                   role="menuitem"
-                  onClick={() => setOpen(false)}
+                  onClick={() => {
+                    setOpen(false)
+                    if (!active) track('lang_switch', { from: locale, to: opt.locale, where: menuAlign === 'right' && variant === 'default' ? 'nav' : 'demo' })
+                  }}
                   className="lang-menu__item"
                   aria-current={active ? 'page' : undefined}
                 >
@@ -282,7 +286,7 @@ function App() {
           </a>
           <div className="site-nav__actions">
             <LanguageDropdown locale={locale} menuAlign="right" menuAriaLabel={ui.ariaLanguageMenu} />
-            <a href="#trial" className="btn-accent">
+            <a href="#trial" className="btn-accent" data-umami-event="cta_click" data-umami-event-position="nav">
               {copy.navCta}
             </a>
           </div>
@@ -312,7 +316,7 @@ function App() {
               </h1>
               <p className="hero__sub">{copy.heroSub}</p>
               <div className="flex flex-wrap items-center gap-3.5">
-                <a href="#trial" className="btn-accent btn-accent--lg">
+                <a href="#trial" className="btn-accent btn-accent--lg" data-umami-event="cta_click" data-umami-event-position="hero">
                   {copy.heroCta}
                 </a>
               </div>
@@ -425,7 +429,10 @@ function App() {
             <p className="trial__sub">{copy.trialSub}</p>
             <TrialForm locale={locale} ui={ui} copy={copy} />
             <div className="trial__questions">
-              {copy.trialQuestions} <a href="mailto:info@ainno.io">info@ainno.io</a>
+              {copy.trialQuestions}{' '}
+              <a href="mailto:info@ainno.io" data-umami-event="contact_click" data-umami-event-position="trial">
+                info@ainno.io
+              </a>
             </div>
           </div>
         </section>
@@ -444,10 +451,24 @@ function App() {
               </h2>
               <p className="promo__body">{copy.promoBody}</p>
               <div className="flex flex-wrap items-center gap-3">
-                <a href={garsioHref(locale, '')} target="_blank" rel="noreferrer" className="btn-accent btn-accent--md">
+                <a
+                  href={garsioHref(locale, '')}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn-accent btn-accent--md"
+                  data-umami-event="promo_click"
+                  data-umami-event-target="garsio_home"
+                >
                   {copy.promoCta}
                 </a>
-                <a href={garsioHref(locale, 'plans-and-pricing')} target="_blank" rel="noreferrer" className="btn-outline-light">
+                <a
+                  href={garsioHref(locale, 'plans-and-pricing')}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn-outline-light"
+                  data-umami-event="promo_click"
+                  data-umami-event-target="garsio_pricing"
+                >
                   {copy.promoPricing}
                 </a>
               </div>
@@ -481,7 +502,9 @@ function App() {
           <a href={LEGAL_LINKS.privacy}>
             {copy.footPrivacy}
           </a>
-          <a href="mailto:info@ainno.io">info@ainno.io</a>
+          <a href="mailto:info@ainno.io" data-umami-event="contact_click" data-umami-event-position="footer">
+            info@ainno.io
+          </a>
         </div>
       </footer>
     </div>

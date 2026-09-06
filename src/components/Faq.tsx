@@ -1,5 +1,6 @@
 import { useId, useState } from 'react'
 import type { FaqItem } from '../locales/siteCopy'
+import { track } from '../lib/analytics'
 
 export function Faq({ items }: { items: readonly FaqItem[] }) {
   const [open, setOpen] = useState<number>(-1)
@@ -17,7 +18,10 @@ export function Faq({ items }: { items: readonly FaqItem[] }) {
               className="faq__q"
               aria-expanded={expanded}
               aria-controls={panelId}
-              onClick={() => setOpen(expanded ? -1 : i)}
+              onClick={() => {
+                if (!expanded) track('faq_open', { index: i + 1, question: f.q })
+                setOpen(expanded ? -1 : i)
+              }}
             >
               <span className="faq__q-text">{f.q}</span>
               <span className="faq__chev" aria-hidden="true">

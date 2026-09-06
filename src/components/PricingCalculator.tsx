@@ -1,4 +1,5 @@
-import { useId, useState } from 'react'
+import { useEffect, useId, useRef, useState } from 'react'
+import { track } from '../lib/analytics'
 import type { SiteCopy } from '../locales/siteCopy'
 
 const INDIVIDUAL_THRESHOLD = 3_000_000 // characters / month
@@ -21,6 +22,16 @@ export function PricingCalculator({ copy, numberLocale, ctaHref }: Props) {
 
   const total = Math.max(0, articles * artLen)
   const standard = total <= INDIVIDUAL_THRESHOLD
+
+  // Report calculator usage once the user pauses typing (not on every keystroke).
+  const touched = useRef(false)
+  useEffect(() => {
+    if (!touched.current) return
+    const t = window.setTimeout(() => {
+      track('calc_change', { articles, artLen, total, yearly, individual: !standard })
+    }, 1200)
+    return () => window.clearTimeout(t)
+  }, [articles, artLen, yearly, total, standard])
   const base = Math.max(MIN_MONTHLY_EUR, (total / 1_000_000) * EUR_PER_MILLION)
   const monthly = yearly ? base * (1 - YEARLY_DISCOUNT) : base
 
@@ -45,7 +56,10 @@ export function PricingCalculator({ copy, numberLocale, ctaHref }: Props) {
             min={1}
             className="input"
             value={articles}
-            onChange={(e) => setArticles(parseInt10(e.target.value))}
+            onChange={(e) => {
+              touched.current = true
+              setArticles(parseInt10(e.target.value))
+            }}
           />
         </div>
         <div className="field">
@@ -59,16 +73,35 @@ export function PricingCalculator({ copy, numberLocale, ctaHref }: Props) {
             step={100}
             className="input"
             value={artLen}
-            onChange={(e) => setArtLen(parseInt10(e.target.value))}
+            onChange={(e) => {
+              touched.current = true
+              setArtLen(parseInt10(e.target.value))
+            }}
           />
         </div>
         <div className="field">
           <span className="field__label">{copy.calcBilling}</span>
           <div className="segmented" role="group" aria-label={copy.calcBilling}>
-            <button type="button" className="segmented__btn" aria-pressed={!yearly} onClick={() => setYearly(false)}>
+            <button
+              type="button"
+              className="segmented__btn"
+              aria-pressed={!yearly}
+              onClick={() => {
+                touched.current = true
+                setYearly(false)
+              }}
+            >
               {copy.calcMonthly}
             </button>
-            <button type="button" className="segmented__btn" aria-pressed={yearly} onClick={() => setYearly(true)}>
+            <button
+              type="button"
+              className="segmented__btn"
+              aria-pressed={yearly}
+              onClick={() => {
+                touched.current = true
+                setYearly(true)
+              }}
+            >
               {copy.calcYearly} <span className="segmented__hint">−{Math.round(YEARLY_DISCOUNT * 100)}%</span>
             </button>
           </div>
@@ -93,7 +126,12 @@ export function PricingCalculator({ copy, numberLocale, ctaHref }: Props) {
                 {copy.calcSavings.replace('{X}', fmtEur(base * YEARLY_DISCOUNT * 12))}
               </span>
             </div>
-            <a href={ctaHref} className="btn-accent btn-accent--md self-start">
+            <a
+              href={ctaHref}
+              className="btn-accent btn-accent--md self-start"
+              data-umami-event="cta_click"
+              data-umami-event-position="calculator"
+            >
               {copy.heroCta}
             </a>
           </>
@@ -103,7 +141,12 @@ export function PricingCalculator({ copy, numberLocale, ctaHref }: Props) {
               <span className="calc__individual">{copy.calcIndividual}</span>
               <span className="calc__individual-sub">{copy.calcIndividualSub}</span>
             </div>
-            <a href="mailto:info@garsio.io" className="btn-accent btn-accent--md self-start">
+            <a
+              href="mailto:info@garsio.io"
+              className="btn-accent btn-accent--md self-start"
+              data-umami-event="contact_click"
+              data-umami-event-position="calculator"
+            >
               {copy.calcContact}
             </a>
           </>

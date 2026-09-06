@@ -33,6 +33,7 @@ jobs:
       - name: Build
         env:
           VITE_WEB3FORMS_ACCESS_KEY: ${{ secrets.VITE_WEB3FORMS_ACCESS_KEY }}
+          VITE_UMAMI_WEBSITE_ID: ${{ vars.VITE_UMAMI_WEBSITE_ID }}
         run: npm run build
 
       - name: Configure Pages

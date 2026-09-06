@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { assetHref } from '../lib/locale'
 import { PAUSE_OTHERS_EVENT } from '../lib/audioBus'
+import { track } from '../lib/analytics'
 import type { PromoVoice } from '../locales/siteCopy'
 
 function PlayGlyph() {
@@ -64,6 +65,7 @@ export function PromoVoices({ voices, label }: { voices: readonly PromoVoice[]; 
     a.addEventListener('ended', done)
     a.addEventListener('error', done)
     setPlaying(i)
+    track('promo_sample_play', { sample: voices[i].name })
     void a.play().catch(done)
   }
 
