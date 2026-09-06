@@ -368,4 +368,16 @@
     <xhtml:link rel="alternate" hreflang="fi" href="https://player.garsio.io/fi/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://player.garsio.io/en/" />
   </url>
+  <url>
+    <loc>https://player.garsio.io/terms/</loc>
+    <lastmod>2026-09-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://player.garsio.io/privacy/</loc>
+    <lastmod>2026-09-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
 </urlset>

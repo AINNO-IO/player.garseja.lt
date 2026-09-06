@@ -1,36 +1,33 @@
-const ORANGE = '#F26522'
-const DARK = '#1A1714'
-
 type GarsioLogoProps = {
   className?: string
+  size?: 'md' | 'sm'
 }
 
-export function GarsioLogo({ className }: GarsioLogoProps) {
+/** Wordmark from the design: five equaliser bars + "Garsio Player". */
+export function GarsioLogo({ className, size = 'md' }: GarsioLogoProps) {
+  const bars: Array<{ h: number; dark?: boolean }> = [
+    { h: 9 },
+    { h: 20 },
+    { h: 13, dark: true },
+    { h: 24 },
+    { h: 7, dark: true },
+  ]
   return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 248 40"
-      fill="none"
-      role="img"
-      aria-label="Garsio Player"
-      className={className}
-    >
-      <rect x="0" y="26" width="5" height="14" rx="2.5" fill={ORANGE} />
-      <rect x="8" y="18" width="5" height="22" rx="2.5" fill={ORANGE} />
-      <rect x="16" y="22" width="5" height="18" rx="2.5" fill={DARK} />
-      <rect x="24" y="8" width="5" height="32" rx="2.5" fill={ORANGE} />
-      <rect x="32" y="30" width="5" height="10" rx="2.5" fill={DARK} />
-      <text
-        x="46"
-        y="29"
-        fontFamily="'Plus Jakarta Sans', system-ui, sans-serif"
-        fontSize="22"
-        fontWeight="700"
-        letterSpacing="-0.02em"
-      >
-        <tspan fill={DARK}>Garsio </tspan>
-        <tspan fill={ORANGE}>Player</tspan>
-      </text>
-    </svg>
+    <span className={['brand', size === 'sm' ? 'brand--sm' : '', className ?? ''].join(' ')} role="img" aria-label="Garsio Player">
+      {size === 'md' ? (
+        <span className="brand__bars" aria-hidden="true">
+          {bars.map((b, i) => (
+            <span
+              key={i}
+              className={['brand__bar', b.dark ? 'brand__bar--dark' : ''].join(' ')}
+              style={{ height: b.h }}
+            />
+          ))}
+        </span>
+      ) : null}
+      <span className="brand__name">
+        Garsio <span>Player</span>
+      </span>
+    </span>
   )
 }

@@ -29,6 +29,8 @@ export default defineConfig({
         sv: resolve(__dirname, 'sv/index.html'),
         no: resolve(__dirname, 'no/index.html'),
         fi: resolve(__dirname, 'fi/index.html'),
+        terms: resolve(__dirname, 'terms/index.html'),
+        privacy: resolve(__dirname, 'privacy/index.html'),
       },
     },
   },

@@ -132,7 +132,7 @@ function localeHead(locale, title, description) {
 ${hreflangLinks()}
     <link rel="alternate" hreflang="x-default" href="${SITE}/en/" />
 ${FAVICON_LINKS_LOCALE}
-    <meta name="theme-color" content="#fffbf7" />
+    <meta name="theme-color" content="#FAF5EE" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Garsio" />
     <meta property="og:locale" content="${ogLocale}" />
@@ -162,7 +162,7 @@ function rootHead() {
 ${hreflangLinks()}
     <link rel="alternate" hreflang="x-default" href="${SITE}/en/" />
 ${FAVICON_LINKS_ROOT}
-    <meta name="theme-color" content="#fffbf7" />`
+    <meta name="theme-color" content="#FAF5EE" />`
 }
 
 function patchLocaleHtml(locale, localeData) {
