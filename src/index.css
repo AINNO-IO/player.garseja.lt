@@ -1065,6 +1065,22 @@ body {
   text-wrap: balance;
 }
 
+.trial__offer {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 auto 18px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(244, 98, 46, 0.5);
+  background: rgba(244, 98, 46, 0.12);
+  color: #ffd2c2;
+  font-size: 14px;
+  font-weight: 600;
+  text-wrap: balance;
+}
+
 /* ── Trial: questions line ── */
 .trial__questions {
   position: relative;

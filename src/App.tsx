@@ -6,7 +6,7 @@ import { localeHref } from './lib/locale'
 import { GarsioLogo } from './components/GarsioLogo'
 import { Player } from './components/Player'
 import { TrialForm } from './components/TrialForm'
-import { PricingCalculator } from './components/PricingCalculator'
+import { PricingCalculator, type OfferContext } from './components/PricingCalculator'
 import { Faq } from './components/Faq'
 import { PromoVoices } from './components/PromoVoices'
 import { track } from './lib/analytics'
@@ -274,6 +274,7 @@ function App({ locale }: { locale: Locale }) {
   const ui = useMemo(() => getPageUi(locale), [locale])
   const copy = useMemo(() => getSiteCopy(locale, bundle, ui), [locale, bundle, ui])
   const numberLocale = localeDateTag(locale)
+  const [offer, setOffer] = useState<OfferContext | null>(null)
 
   return (
     <div className="min-h-dvh">
@@ -417,7 +418,7 @@ function App({ locale }: { locale: Locale }) {
           <div className="section-head" style={{ marginBottom: 34 }}>
             <h2 className="section-title">{copy.calcTitle}</h2>
           </div>
-          <PricingCalculator copy={copy} numberLocale={numberLocale} ctaHref="#trial" />
+          <PricingCalculator copy={copy} numberLocale={numberLocale} ctaHref="#trial" onRequestOffer={setOffer} />
         </section>
 
         {/* ── Trial CTA ── */}
@@ -426,7 +427,7 @@ function App({ locale }: { locale: Locale }) {
             <div className="trial__glow" aria-hidden="true" />
             <h2 className="trial__title">{copy.trialTitle}</h2>
             <p className="trial__sub">{copy.trialSub}</p>
-            <TrialForm locale={locale} ui={ui} copy={copy} />
+            <TrialForm locale={locale} ui={ui} copy={copy} offer={offer} numberLocale={numberLocale} />
             <div className="trial__questions">
               {copy.trialQuestions}{' '}
               <a href="mailto:info@ainno.io" data-umami-event="contact_click" data-umami-event-position="trial">

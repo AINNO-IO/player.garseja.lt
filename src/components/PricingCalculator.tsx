@@ -7,13 +7,17 @@ const MIN_MONTHLY_EUR = 20
 const EUR_PER_MILLION = 80
 const YEARLY_DISCOUNT = 0.15
 
+/** Volume the visitor entered when asking for an individual offer. */
+export type OfferContext = { articles: number; artLen: number; total: number; yearly: boolean }
+
 type Props = {
   copy: SiteCopy
   numberLocale: string
   ctaHref: string
+  onRequestOffer?: (ctx: OfferContext) => void
 }
 
-export function PricingCalculator({ copy, numberLocale, ctaHref }: Props) {
+export function PricingCalculator({ copy, numberLocale, ctaHref, onRequestOffer }: Props) {
   const [articles, setArticles] = useState(150)
   const [artLen, setArtLen] = useState(4000)
   const [yearly, setYearly] = useState(false)
@@ -142,10 +146,11 @@ export function PricingCalculator({ copy, numberLocale, ctaHref }: Props) {
               <span className="calc__individual-sub">{copy.calcIndividualSub}</span>
             </div>
             <a
-              href="mailto:info@garsio.io"
+              href={ctaHref}
               className="btn-accent btn-accent--md self-start"
-              data-umami-event="contact_click"
+              data-umami-event="offer_request"
               data-umami-event-position="calculator"
+              onClick={() => onRequestOffer?.({ articles, artLen, total, yearly })}
             >
               {copy.calcContact}
             </a>

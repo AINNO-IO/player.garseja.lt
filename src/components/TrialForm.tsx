@@ -1,9 +1,10 @@
-import { useState, type FormEvent } from 'react'
+import { useEffect, useRef, useState, type FormEvent } from 'react'
 import type { Locale } from '../locales'
 import { LOCALES } from '../locales'
 import type { PageUiStrings } from '../locales/pageUi'
 import type { SiteCopy } from '../locales/siteCopy'
 import { track } from '../lib/analytics'
+import type { OfferContext } from './PricingCalculator'
 
 const WEB3FORMS_URL = 'https://api.web3forms.com/submit'
 
@@ -11,10 +12,17 @@ type Props = {
   locale: Locale
   ui: PageUiStrings
   copy: SiteCopy
+  /** Set when the visitor came from the calculator's "individual offer" button. */
+  offer?: OfferContext | null
+  numberLocale: string
 }
 
 /** Inline trial request form (website URL + email) posting to Web3Forms. */
-export function TrialForm({ locale, ui, copy }: Props) {
+export function TrialForm({ locale, ui, copy, offer, numberLocale }: Props) {
+  const websiteRef = useRef<HTMLInputElement | null>(null)
+  useEffect(() => {
+    if (offer) window.setTimeout(() => websiteRef.current?.focus({ preventScroll: true }), 400)
+  }, [offer])
   const [siteUrl, setSiteUrl] = useState('')
   const [email, setEmail] = useState('')
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle')
@@ -35,9 +43,19 @@ export function TrialForm({ locale, ui, copy }: Props) {
     setErrorMessage('')
 
     const message = [
-      'Free trial request from player.garsio.io',
+      offer ? 'Individual pricing offer request from player.garsio.io' : 'Free trial request from player.garsio.io',
       `Locale: ${locale} (${LOCALES[locale].languageName})`,
       `Website: ${siteUrl.trim() || '(not provided)'}`,
+      ...(offer
+        ? [
+            '',
+            'Calculator input:',
+            `Articles per month: ${offer.articles}`,
+            `Average article length: ${offer.artLen} characters`,
+            `Characters per month: ${offer.total}`,
+            `Billing: ${offer.yearly ? 'yearly' : 'monthly'}`,
+          ]
+        : []),
     ].join('\n')
 
     try {
@@ -46,7 +64,7 @@ export function TrialForm({ locale, ui, copy }: Props) {
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({
           access_key: accessKey,
-          subject: 'Garsio Player — Free trial request',
+          subject: offer ? 'Garsio Player — Individual offer request' : 'Garsio Player — Free trial request',
           email: email.trim(),
           message,
           botcheck: false,
@@ -63,7 +81,7 @@ export function TrialForm({ locale, ui, copy }: Props) {
       }
 
       setStatus('success')
-      track('trial_submit', { locale, hasWebsite: siteUrl.trim().length > 0 })
+      track('trial_submit', { locale, hasWebsite: siteUrl.trim().length > 0, offer: Boolean(offer) })
     } catch {
       setStatus('error')
       setErrorMessage(ui.trialErrNetwork)
@@ -81,8 +99,14 @@ export function TrialForm({ locale, ui, copy }: Props) {
 
   return (
     <>
+      {offer ? (
+        <div className="trial__offer" role="status">
+          {copy.calcIndividual} · {offer.total.toLocaleString(numberLocale)} {copy.calcTotalSymbols.toLowerCase()}
+        </div>
+      ) : null}
       <form className="trial__form" onSubmit={handleSubmit}>
         <input
+          ref={websiteRef}
           type="text"
           name="website"
           inputMode="url"
