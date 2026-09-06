@@ -1,0 +1,66 @@
+{
+  "en": {
+    "title": "Garsio Player: Text-to-Speech Audio Player for Articles",
+    "description": "Turn articles into audio with natural voices in 16 languages. Embed the player on your news site or blog in hours and monetise with audio ads. Free 7-day trial."
+  },
+  "lt": {
+    "title": "Garsio Player: straipsnių įgarsinimas ir audio grotuvas svetainei",
+    "description": "Paverskite straipsnius garsu natūraliais balsais. Įdiekite grotuvą naujienų portale ar tinklaraštyje per kelias valandas ir uždirbkite iš audio reklamos. 7 dienos nemokamai."
+  },
+  "cs": {
+    "title": "Garsio Player: převod článků na audio pro vydavatele",
+    "description": "Proměňte články v audio s přirozenými hlasy v 16 jazycích. Přehrávač nasadíte na zpravodajský web nebo blog za pár hodin a zpeněžíte audio reklamou. 7 dní zdarma."
+  },
+  "sk": {
+    "title": "Garsio Player: prevod článkov na audio pre vydavateľov",
+    "description": "Premeňte články na audio s prirodzenými hlasmi v 16 jazykoch. Prehrávač nasadíte na spravodajský web alebo blog za pár hodín a speňažíte audio reklamou. 7 dní zadarmo."
+  },
+  "hu": {
+    "title": "Garsio Player: cikkek felolvasása és audio lejátszó kiadóknak",
+    "description": "Alakítsa cikkeit hanganyaggá természetes hangokkal, 16 nyelven. A lejátszó órák alatt beépíthető hírportálba vagy blogba, és audio hirdetésekkel bevételt hoz. 7 napos ingyenes próba."
+  },
+  "ro": {
+    "title": "Garsio Player: articole în format audio pentru publisheri",
+    "description": "Transformă articolele în audio cu voci naturale în 16 limbi. Integrezi playerul pe site-ul de știri sau blog în câteva ore și monetizezi prin reclame audio. 7 zile gratuit."
+  },
+  "bg": {
+    "title": "Garsio Player: озвучаване на статии и аудио плейър за издатели",
+    "description": "Превърнете статиите в аудио с естествени гласове на 16 езика. Вградете плейъра в новинарски сайт или блог за часове и печелете от аудио реклами. 7 дни безплатно."
+  },
+  "hr": {
+    "title": "Garsio Player: pretvaranje članaka u audio za izdavače",
+    "description": "Pretvorite članke u audio s prirodnim glasovima na 16 jezika. Ugradite player na news portal ili blog u nekoliko sati i monetizirajte audio oglasima. 7 dana besplatno."
+  },
+  "sr": {
+    "title": "Garsio Player: pretvaranje članaka u audio za izdavače",
+    "description": "Pretvorite članke u audio sa prirodnim glasovima na 16 jezika. Ugradite plejer na news portal ili blog za nekoliko sati i monetizujte audio oglasima. 7 dana besplatno."
+  },
+  "sl": {
+    "title": "Garsio Player: pretvorba člankov v zvok za založnike",
+    "description": "Pretvorite članke v zvok z naravnimi glasovi v 16 jezikih. Predvajalnik vgradite na novičarski portal ali blog v nekaj urah in monetizirajte z zvočnimi oglasi. 7 dni brezplačno."
+  },
+  "de": {
+    "title": "Garsio Player: Text-to-Speech-Player für Artikel und Verlage",
+    "description": "Verwandeln Sie Artikel in Audio mit natürlichen Stimmen in 16 Sprachen. Player in wenigen Stunden in Newsportal oder Blog einbinden und mit Audio-Werbung monetarisieren. 7 Tage kostenlos."
+  },
+  "es": {
+    "title": "Garsio Player: reproductor de texto a voz para artículos",
+    "description": "Convierte tus artículos en audio con voces naturales en 16 idiomas. Integra el reproductor en tu medio o blog en horas y monetiza con anuncios de audio. Prueba gratis de 7 días."
+  },
+  "da": {
+    "title": "Garsio Player: tekst-til-tale afspiller til artikler",
+    "description": "Gør artikler til lyd med naturlige stemmer på 16 sprog. Indsæt afspilleren på dit nyhedssite eller din blog på få timer, og tjen penge på lydannoncer. 7 dages gratis prøve."
+  },
+  "sv": {
+    "title": "Garsio Player: text-till-tal-spelare för artiklar",
+    "description": "Gör artiklar till ljud med naturliga röster på 16 språk. Lägg in spelaren på din nyhetssajt eller blogg på några timmar och tjäna pengar på ljudannonser. 7 dagars gratis test."
+  },
+  "no": {
+    "title": "Garsio Player: tekst-til-tale-spiller for artikler",
+    "description": "Gjør artikler til lyd med naturlige stemmer på 16 språk. Legg spilleren inn på nyhetssiden eller bloggen din på noen timer, og tjen penger på lydannonser. 7 dager gratis."
+  },
+  "fi": {
+    "title": "Garsio Player: tekstistä puheeksi -soitin artikkeleille",
+    "description": "Muuta artikkelit ääneksi luonnollisilla äänillä 16 kielellä. Lisää soitin uutissivustolle tai blogiin muutamassa tunnissa ja ansaitse äänimainoksilla. 7 päivän ilmainen kokeilu."
+  }
+}

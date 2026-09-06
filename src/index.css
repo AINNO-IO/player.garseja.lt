@@ -1314,6 +1314,30 @@ body {
   color: var(--accent-dark);
 }
 
+.site-footer__langs {
+  flex-basis: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(234, 223, 207, 0.7);
+  font-size: 13px;
+}
+
+.site-footer__langs a {
+  color: var(--color-ink-faint);
+  text-decoration: none;
+}
+
+.site-footer__langs a:hover {
+  color: var(--accent-dark);
+}
+
+.site-footer__langs a[aria-current="page"] {
+  color: var(--color-ink);
+  font-weight: 600;
+}
+
 /* ── Legal pages (terms / privacy) ── */
 .legal {
   min-height: 100dvh;

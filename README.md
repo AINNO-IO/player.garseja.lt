@@ -67,6 +67,11 @@ npm run build
 npm run preview
 ```
 
+`npm run build` runs `tsc`, `vite build`, then `scripts/prerender.mjs`, which renders every entry page
+(`/<locale>/`, `/terms/`, `/privacy/`) to static HTML via `src/entry-server.tsx` and injects a FAQPage JSON-LD block.
+The client hydrates that markup (`src/main.tsx`). Per-locale `<title>` / meta descriptions come from
+`src/locales/seo.json` (applied by `scripts/apply-seo.mjs` in `prebuild`).
+
 The build is a **static multi-page site** that outputs:
 - `/index.html` (auto-detect → redirect)
 - `/en/index.html`

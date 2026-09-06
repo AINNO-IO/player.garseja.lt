@@ -5,6 +5,7 @@ const root = path.resolve(import.meta.dirname, '..')
 const SITE = 'https://player.garsio.io'
 const LOCALES = ['en', 'lt', 'cs', 'sk', 'hu', 'ro', 'bg', 'hr', 'sr', 'sl', 'de', 'es', 'da', 'sv', 'no', 'fi']
 const OG_IMAGE = `${SITE}/logo-og.png`
+const SEO = JSON.parse(fs.readFileSync(path.join(root, 'src/locales/seo.json'), 'utf8'))
 
 const OG_LOCALE = {
   en: 'en_US',
@@ -36,21 +37,6 @@ function truncate(text, max = 155) {
   const s = String(text).trim()
   if (s.length <= max) return s
   return `${s.slice(0, max - 1).trimEnd()}…`
-}
-
-function parseLocalesFromSource() {
-  const ts = fs.readFileSync(path.join(root, 'src/locales/index.ts'), 'utf8')
-  const map = {}
-  for (const locale of LOCALES) {
-    const blockRe = new RegExp(`${locale}: \\{[\\s\\S]*?landing: \\{([\\s\\S]*?)\\},\\s*article:`)
-    const match = ts.match(blockRe)
-    if (!match) throw new Error(`Could not parse locale block: ${locale}`)
-    const block = match[1]
-    const heroSubtitle = block.match(/heroSubtitle:\s*\n\s*'([^']*)'/)?.[1]
-    if (!heroSubtitle) throw new Error(`Missing heroSubtitle for ${locale}`)
-    map[locale] = { heroSubtitle }
-  }
-  return map
 }
 
 const FAVICON_LINKS_LOCALE = `    <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
@@ -89,6 +75,7 @@ function jsonLd({ locale, title, description, url }) {
           '@id': `${SITE}/#organization`,
           name: 'Garsio',
           url: 'https://garsio.io/',
+          email: 'info@ainno.io',
           logo: { '@type': 'ImageObject', url: `${SITE}/logo.png` },
         },
         {
@@ -107,7 +94,12 @@ function jsonLd({ locale, title, description, url }) {
           name: 'Garsio Article Audio Player',
           applicationCategory: 'MultimediaApplication',
           operatingSystem: 'Web',
-          offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' },
+          offers: {
+            '@type': 'AggregateOffer',
+            lowPrice: '20',
+            priceCurrency: 'EUR',
+            description: 'From 20 € per month, billed monthly or yearly. Free 7-day trial.',
+          },
         },
       ],
     },
@@ -165,12 +157,13 @@ ${FAVICON_LINKS_ROOT}
     <meta name="theme-color" content="#FAF5EE" />`
 }
 
-function patchLocaleHtml(locale, localeData) {
+function patchLocaleHtml(locale) {
   const file = path.join(root, locale, 'index.html')
   let html = fs.readFileSync(file, 'utf8')
-  const title = html.match(/<title>([^<]*)<\/title>/)?.[1]
-  if (!title) throw new Error(`Missing <title> in ${file}`)
-  const description = truncate(localeData.heroSubtitle)
+  const seo = SEO[locale]
+  if (!seo?.title || !seo?.description) throw new Error(`Missing title/description for ${locale} in src/locales/seo.json`)
+  const title = seo.title
+  const description = truncate(seo.description, 160)
   const head = localeHead(locale, title, description)
   html = html.replace(/<head>[\s\S]*?<\/head>/, `<head>\n${head}\n  </head>`)
   html = html.replace(/<html lang="[^"]*">/, `<html lang="${locale}">`)
@@ -197,8 +190,7 @@ function patchSitemap() {
   fs.writeFileSync(file, xml)
 }
 
-const localeData = parseLocalesFromSource()
-for (const locale of LOCALES) patchLocaleHtml(locale, localeData[locale])
+for (const locale of LOCALES) patchLocaleHtml(locale)
 patchRootHtml()
 patchSitemap()
 console.log('SEO head tags applied for', LOCALES.length, 'locales')

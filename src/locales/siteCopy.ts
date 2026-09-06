@@ -262,6 +262,9 @@ const LT: SiteCopy = {
 
 const FULL: Partial<Record<Locale, SiteCopy>> = { en: EN, lt: LT }
 
+/** True when the locale has its own landing-page translation (vs. English fallback). */
+export const hasFullCopy = (locale: Locale): boolean => locale in FULL
+
 /**
  * Resolve the landing-page copy for a locale. Locales without a dedicated
  * translation reuse their existing localized strings where an equivalent

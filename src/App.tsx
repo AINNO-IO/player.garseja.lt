@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { LOCALES, type Locale } from './locales'
 import { getPageUi } from './locales/pageUi'
 import { getSiteCopy, garsioHref, LEGAL_LINKS } from './locales/siteCopy'
-import { getInitialLocale, localeHref } from './lib/locale'
+import { localeHref } from './lib/locale'
 import { GarsioLogo } from './components/GarsioLogo'
 import { Player } from './components/Player'
 import { TrialForm } from './components/TrialForm'
@@ -269,8 +269,7 @@ function LanguageDropdown({
   )
 }
 
-function App() {
-  const locale = getInitialLocale()
+function App({ locale }: { locale: Locale }) {
   const bundle = LOCALES[locale]
   const ui = useMemo(() => getPageUi(locale), [locale])
   const copy = useMemo(() => getSiteCopy(locale, bundle, ui), [locale, bundle, ui])
@@ -506,6 +505,20 @@ function App() {
             info@ainno.io
           </a>
         </div>
+        {/* Static language links so every locale is crawlable without opening the dropdown */}
+        <nav className="site-footer__langs" aria-label={ui.ariaLanguageMenu}>
+          {languageOptions.map((opt) => (
+            <a
+              key={opt.locale}
+              href={localeHref(locale, opt.locale)}
+              hrefLang={opt.locale}
+              lang={opt.locale}
+              aria-current={opt.locale === locale ? 'page' : undefined}
+            >
+              {LOCALES[opt.locale].languageName}
+            </a>
+          ))}
+        </nav>
       </footer>
     </div>
   )
