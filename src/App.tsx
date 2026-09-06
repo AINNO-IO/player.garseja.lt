@@ -376,6 +376,92 @@ function App({ locale }: { locale: Locale }) {
           </div>
         </section>
 
+        {/* ── Integration ── */}
+        <section id="integration" className="container-wide pt-[clamp(40px,6vw,64px)] pb-6">
+          <div className="section-head">
+            <h2 className="section-title">{copy.howTitle}</h2>
+            <p className="section-sub mx-auto max-w-[62ch]">{copy.howIntro}</p>
+          </div>
+          <div className="info-grid">
+            {copy.howItems.map((x, i) => (
+              <div key={x.title} className="card info-card">
+                <div className="info-card__index" aria-hidden="true">
+                  {String(i + 1).padStart(2, '0')}
+                </div>
+                <h3 className="info-card__title">{x.title}</h3>
+                <p className="info-card__desc">{x.desc}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* ── Languages & voices ── */}
+        <section id="languages" className="container-wide pt-[clamp(40px,6vw,64px)] pb-6">
+          <div className="section-head">
+            <h2 className="section-title">{copy.langsTitle}</h2>
+            <p className="section-sub mx-auto max-w-[62ch]">{copy.langsIntro}</p>
+          </div>
+          <ul className="lang-grid">
+            {languageOptions.map((opt) => {
+              const b = LOCALES[opt.locale]
+              return (
+                <li key={opt.locale}>
+                  <a
+                    href={localeHref(locale, opt.locale)}
+                    hrefLang={opt.locale}
+                    className="card lang-card"
+                    aria-current={opt.locale === locale ? 'page' : undefined}
+                  >
+                    <span className="lang-card__head">
+                      <Flag locale={opt.locale} title={b.languageName} />
+                      <span className="lang-card__name" lang={opt.locale}>
+                        {b.languageName}
+                      </span>
+                    </span>
+                    <span className="lang-card__voices">
+                      <span className="lang-card__voices-label">{copy.langsVoicesLabel}:</span>{' '}
+                      {b.voices.map((v) => v.name).join(', ')}
+                    </span>
+                  </a>
+                </li>
+              )
+            })}
+          </ul>
+        </section>
+
+        {/* ── Why audio / who it's for ── */}
+        <section id="why" className="container-wide pt-[clamp(40px,6vw,64px)] pb-6">
+          <div className="card why">
+            <div>
+              <h2 className="section-title">{copy.whyTitle}</h2>
+              <ul className="why__list">
+                {copy.whyItems.map((x) => (
+                  <li key={x.title} className="why__item">
+                    <span className="why__check" aria-hidden="true">
+                      ✓
+                    </span>
+                    <div>
+                      <h3 className="why__item-title">{x.title}</h3>
+                      <p className="why__item-desc">{x.desc}</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h3 className="why__for-title">{copy.forTitle}</h3>
+              <div className="why__for-grid">
+                {copy.forCards.map((x) => (
+                  <div key={x.title} className="why__for-card">
+                    <div className="info-card__title">{x.title}</div>
+                    <p className="info-card__desc">{x.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* ── Monetisation ── */}
         <section className="container-wide py-[clamp(32px,5vw,56px)]">
           <div className="card mon">
@@ -505,6 +591,7 @@ function App({ locale }: { locale: Locale }) {
             info@ainno.io
           </a>
         </div>
+        <p className="site-footer__company">{copy.companyLine}</p>
         {/* Static language links so every locale is crawlable without opening the dropdown */}
         <nav className="site-footer__langs" aria-label={ui.ariaLanguageMenu}>
           {languageOptions.map((opt) => (
